@@ -42,9 +42,6 @@ How to install this project
 
 <br>
 
-## Dashboard-page page
-<br>
-
 ![alt text](img/dashboard-page.png)
 
 <br>
