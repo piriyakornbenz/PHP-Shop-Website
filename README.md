@@ -35,6 +35,14 @@ How to install this project
 
 <br>
 
+## Cart page
+
+<br>
+
+![alt text](img/cart.png)
+
+<br>
+
 ## Dashboard page
 <br>
 
