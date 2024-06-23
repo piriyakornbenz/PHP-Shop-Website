@@ -35,6 +35,14 @@ How to install this project
 
 <br>
 
+## Cart page
+
+<br>
+
+![alt text](img/cart.png)
+
+<br>
+
 ## Dashboard page
 <br>
 
@@ -42,14 +50,30 @@ How to install this project
 
 <br>
 
-## Dashboard-page page
+![alt text](img/dashboard-products.png)
+
 <br>
 
 ![alt text](img/dashboard-page.png)
 
 <br>
 
-## Dashboard-users page
+![alt text](img/dashboard-reviews.png)
+
+<br>
+
+![alt text](img/dashboard-footer.png)
+
+<br>
+
+![alt text](img/dashboard-orders.png)
+
 <br>
 
 ![alt text](img/dashboard-users.png)
+
+<br>
+
+![alt text](img/dashboard-admin.png)
+
+
