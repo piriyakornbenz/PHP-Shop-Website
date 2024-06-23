@@ -24,40 +24,32 @@ How to install this project
 ## Home page
 <br>
 
-![alt text](img_pages/home.png)
+![alt text](img/home.png)
 
 <br>
 
-## About page
+## Shop page (when user login)
 <br>
 
-![alt text](img_pages/about.png)
-
-<br>
-
-## Category page
-<br>
-
-![alt text](img_pages/category.png)
+![alt text](img/shop.png)
 
 <br>
 
-## Bedroom page
+## Dashboard page
 <br>
 
-![alt text](img_pages/bedroom.png)
-
-<br>
-
-## Gallery page
-<br>
-
-![alt text](img_pages/gallery.png)
+![alt text](img/dashboard.png)
 
 <br>
 
-## Contact page
+## Dashboard-page page
 <br>
 
-![alt text](img_pages/contact.png)
+![alt text](img/dashboard-page.png)
 
+<br>
+
+## Dashboard-users page
+<br>
+
+![alt text](img/dashboard-users.png)
