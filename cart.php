@@ -12,23 +12,39 @@
         header('location: login.php');
     }
 
-    function getProductDetailsByIds($ids, $conn)
-    {
-        if (empty($ids)) {
-            return []; // Return empty array if $ids is empty
+    // product in cart
+    if (isset($_GET['id'])) {
+        if (empty($_SESSION['cart'])) {
+            $_SESSION['cart'][$_GET['id']] = 1;
+        }else {
+            $_SESSION['cart'][$_GET['id']] += 1;
+        }
+        $_SESSION['success'] = "Add to cart successful.";
+        header('location: shop.php');
+    }
+
+    // loop product in cart
+    if (isset($_SESSION['cart'])) {
+
+        $productIds = [];
+
+        foreach($_SESSION['cart'] as $id => $amount) {
+            $productIds[] = $id;
+        }
+
+        if (count($productIds) > 0) {
+            
+            $placeholders = implode(',', array_fill(0, count($productIds), '?'));
+            $stmt = $conn->prepare("SELECT * FROM section_products WHERE id IN ($placeholders)");
+        
+            foreach ($productIds as $index => $id) {
+                $stmt->bindValue($index + 1, $id);
+            }
+        
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     
-        $placeholders = implode(',', array_fill(0, count($ids), '?'));
-    
-        $stmt = $conn->prepare("SELECT * FROM section_products WHERE id IN ($placeholders)");
-    
-        // Bind values to the prepared statement
-        foreach ($ids as $key => $id) {
-            $stmt->bindValue($key + 1, $id);
-        }
-    
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 ?>
@@ -85,13 +101,7 @@
         <h1 class="heading"> Cart </h1>
 
         <div class="table-container">
-            <?php if (isset($_SESSION['cart'])) {
-                $cart = $_SESSION['cart'];
-                $products = getProductDetailsByIds($cart, $conn);
-
-                if (count($products) > 0) {
-            ?>
-
+            
                     <table class="cart-table">
                         <tr>
                             <th>Product</th>
@@ -100,26 +110,25 @@
                             <th>Remove</th>
                         </tr>
 
-                        <?php foreach ($products as $product) { ?>
-
+                        <?php 
+                            if (isset($data)) {
+                                foreach ($data as $row) { 
+                        ?>
                             <tr>
-                                <td><?= $product['heading'] ?></td>
-                                <td><img src="./uploads/<?= $product['picture'] ?>" alt=""></td>
-                                <td>฿<?= $product['price'] ?></td>
-                                <td><a href="remove_from_cart.php?id=<?= $product['id'] ?>" class="btn btn-remove">remove</a></td>
+                                <td><?= $row['heading'] ?></td>
+                                <td><img src="./uploads/<?= $row['picture'] ?>" alt=""></td>
+                                <td>฿<?= $row['price'] * (100 - $row['discount']) / 100; ?></td>
+                                <td><a href="remove_from_cart.php?id=<?= $row['id'] ?>" class="btn btn-remove">remove</a></td>
                             </tr>
 
-                    <?php }
-                        echo '</table>';
-                    } else {
-                        echo '<p>Your Cart Is Empty.</p>';
-                    } ?>
+                        <?php 
+                                } 
+                            }else {
+                                echo '<p>Your Cart Is Empty.</p>';
+                            }
+                        ?>
 
                     </table>
-
-                <?php } else {
-                echo '<p>Your Cart Is Empty.</p>';
-            } ?>
         </div>
 
         <div class="right">

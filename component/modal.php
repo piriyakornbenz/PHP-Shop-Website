@@ -445,6 +445,11 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="description">Address</label>
+                        <input type="text" class="form-control" name="add_address_users" required>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="description">Password</label>
                         <input type="password" class="form-control" name="add_password_users" required>
                     </div>
@@ -490,6 +495,11 @@
                     <div class="mb-3">
                         <label for="description">Email</label>
                         <input type="email" class="form-control" name="update_email_users" id="update_email_users" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description">Address</label>
+                        <input type="text" class="form-control" name="update_address_users" id="update_address_users" required>
                     </div>
 
                     <div class="mb-3">

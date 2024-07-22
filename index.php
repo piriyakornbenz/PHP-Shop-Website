@@ -13,6 +13,26 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .review .box-container .message{
+            margin-bottom: 8rem;
+        }
+
+        .review .box-container .box .user{
+            position: absolute;
+            bottom: 3rem; left: 3rem;
+            display: flex;
+            align-items: center;
+            padding-top: 2rem;
+        }
+
+        .review .box-container .box .fa-quote-right{
+            position: absolute;
+            bottom: 3rem; right: 3rem;
+            font-size: 6rem;
+            color: #eee;
+        }
+    </style>
 </head>
 <body>
 
@@ -141,9 +161,9 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                 </div>
-                <p><?= $result['message']; ?></p>
+                <p class="message"><?= $result['message']; ?></p>
                 <div class="user">
-                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <img src="uploads/<?= $result['img'] ?>" alt="">
                     <div class="user-info">
                         <h4 class="h4"><?= $result['name']; ?></h4>
                         <span><?= $result['email']; ?></span>

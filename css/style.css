@@ -420,6 +420,8 @@ header .fa-bars{
 }
 
 .review .box-container .box .user{
+    position: absolute;
+    bottom: 3rem; right: 3rem;
     display: flex;
     align-items: center;
     padding-top: 2rem;
@@ -617,6 +619,15 @@ header .fa-bars{
     padding: 20px 10px;
     border-radius: 10px;
     display: none;
+}
+
+.alert-success {
+    width: 100%;
+    color: #fff;
+    font-size: 1.5rem;
+    background-color: green;
+    border-radius: 5px;
+    padding: 15px;
 }
 
 /* responsive */

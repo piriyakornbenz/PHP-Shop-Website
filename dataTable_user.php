@@ -16,13 +16,15 @@
             $firstname = $_POST['add_firstname_users'];
             $lastname = $_POST['add_lastname_users'];
             $email = $_POST['add_email_users'];
+            $address = $_POST['add_address_users'];
             $password = $_POST['add_password_users'];
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-            $add = $conn->prepare("INSERT INTO customers(firstname, lastname, email, password) VALUES(:firstname, :lastname, :email, :password)");
+            $add = $conn->prepare("INSERT INTO customers(firstname, lastname, email, address, password) VALUES(:firstname, :lastname, :email, :address, :password)");
             $add->bindParam(':firstname', $firstname);
             $add->bindParam(':lastname', $lastname);
             $add->bindParam(':email', $email);
+            $add->bindParam(':address', $address);
             $add->bindParam(':password', $hashed_password);
 
             if ($add->execute()) {
@@ -45,14 +47,16 @@
             $firstname = $_POST['update_firstname_users'];
             $lastname = $_POST['update_lastname_users'];
             $email = $_POST['update_email_users'];
+            $address = $_POST['update_address_users'];
             $password = $_POST['update_password_users'];
             $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-            $update = $conn->prepare("UPDATE customers SET firstname = :firstname, lastname = :lastname, email = :email, password = :password WHERE id = :id");
+            $update = $conn->prepare("UPDATE customers SET firstname = :firstname, lastname = :lastname, email = :email, address = :address, password = :password WHERE id = :id");
             $update->bindParam(':id', $id);
             $update->bindParam(':firstname', $firstname);
             $update->bindParam(':lastname', $lastname);
             $update->bindParam(':email', $email);
+            $update->bindParam(':address', $address);
             $update->bindParam(':password', $hashed_password);
 
             if ($update->execute()) {
@@ -158,6 +162,7 @@
                                         <th>Firstname</th>
                                         <th>Lastname</th>
                                         <th>Email</th>
+                                        <th>Address</th>
                                         <th>Password</th>
                                         <th>Action</th>
                                     </tr>
@@ -171,6 +176,7 @@
                                             <td><?= $data['firstname']; ?></td>
                                             <td><?= $data['lastname']; ?></td>
                                             <td><?= $data['email']; ?></td>
+                                            <td><?= $data['address']; ?></td>
                                             <td><?= $data['password']; ?></td>
                                             <td style="width: 200px;">
                                                 <a class="btn btn-primary editbtn">Edit</a>
@@ -232,6 +238,7 @@
                         $('#update_firstname_users').val(data[2]);
                         $('#update_lastname_users').val(data[3]);
                         $('#update_email_users').val(data[4]);
+                        $('#update_address_users').val(data[5]);
                     });
                 });
             </script>

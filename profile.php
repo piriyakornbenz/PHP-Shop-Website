@@ -48,6 +48,7 @@ if (isset($_POST['reviews'])) {
             background-color: green;
             border-radius: 5px;
             padding: 15px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -87,9 +88,9 @@ if (isset($_POST['reviews'])) {
     <!-- product -->
     <section class="products" id="products" style="margin-top: 10rem;">
 
-        <p id="text-alert"></p>
+        <a href="shop.php" class="btn"><i class="fa-solid fa-arrow-left"></i> back</a>
 
-        <h1 class="heading"> lastest <span>Products</span> </h1>
+        <h1 class="heading"> profile</span> </h1>
 
         <?php if(isset($_SESSION['success'])) { ?>
             <div class="alert alert-success">
@@ -100,76 +101,20 @@ if (isset($_POST['reviews'])) {
             </div>
         <?php } ?>
 
-        <div class="box-container">
+        <div class="container">
 
-            <?php foreach ($row4 as $result) : ?>
-                <div class="box">
-                    <?php if ($result['discount'] > 0) { ?>
-                        <span class="discount">-<?= $result['discount']; ?>%</span>
-                    <?php } else { ?>
-                        <span style="display: none;"></span>
-                    <?php } ?>
-                    <div class="image">
-                        <img src="./uploads/<?= $result['picture']; ?>" alt="">
-                    </div>
-                    <div class="content">
-                        <h2 class="h2"><?= $result['heading']; ?></h2>
-                        <?php if ($result['discount'] > 0) { ?>
-                            <div class="price">฿<?= $result['price'] * (100 - $result['discount']) / 100; ?> <span>฿<?= $result['price']; ?></span> </div>
-                        <?php } else { ?>
-                            <div class="price">฿<?= $result['price'] * (100 - $result['discount']) / 100; ?> </div>
-                        <?php } ?>
-                    </div>
-                    <div class="button-add">
-                        <a href="cart.php?id=<?= $result['id'] ?>" class="btn"><i class="fa-solid fa-cart-shopping"></i> add to cart</a>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+           <center>
+                <img src="uploads/<?= $row['img'] ?>" width="200px">
+                <p><?= $row['firstname'] . ' ' . $row['lastname'] ?></p>
+                <p><?= $row['email'] ?></p>
+                <p><?= $row['address'] ?></p>
+                <a href="edit_profile.php" class="btn btn-primary">edit</a>
+           </center>
 
         </div>
 
     </section>
 
-    <!-- footer -->
-    <section class="footer">
-
-        <div class="box-container">
-
-            <div class="box">
-                <h2 class="h2">quick links</h2>
-                <a href="#products">products</a>
-            </div>
-
-            <div class="box">
-                <h2 class="h2">extra links</h2>
-                <a href="#">my account</a>
-                <a href="#">my order</a>
-                <a href="#">my favorite</a>
-            </div>
-
-            <div class="box">
-                <h2 class="h2">location</h2>
-                <a href="#">thailand</a>
-                <a href="#">USA</a>
-                <a href="#">japan</a>
-            </div>
-
-            <div class="box">
-                <h2 class="h2">contact info</h2>
-                <a href="#">+123-456-7890</a>
-                <a href="#">example@email.com</a>
-                <a href="#">Thailand</a>
-                <i class="fa-brands fa-cc-paypal" style="color: #74C0FC;"></i>
-                <i class="fa-solid fa-credit-card"></i>
-            </div>
-
-        </div>
-
-        <?php foreach ($row6 as $result) : ?>
-            <div class="credit"> <?= $result['footer'];  ?> </div>
-        <?php endforeach; ?>
-
-    </section>
 
     <script>
         function toggleDropdown() {

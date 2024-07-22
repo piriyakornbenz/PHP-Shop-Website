@@ -6,9 +6,20 @@
 
     $count = 1;
 
-    $stmt = $conn->prepare("SELECT * FROM orders");
+    $stmt = $conn->prepare("SELECT * FROM orders ORDER BY date DESC");
     $stmt->execute();
     $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $status = "received";
+        $stmt = $conn->prepare("UPDATE orders SET status=:status WHERE id=:id");
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':status', $status);
+        $stmt->execute();
+        header('location: order.php');
+        exit();
+    }
 
 ?>
 
@@ -86,6 +97,8 @@
                                         <th>User id</th>
                                         <th>Product id</th>
                                         <th>Price</th>
+                                        <th>Order date</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
 
@@ -97,6 +110,12 @@
                                             <td><?= $data['customer_id']; ?></td>
                                             <td><?= $data['product_id']; ?></td>
                                             <td><?= $data['price']; ?></td>
+                                            <td><?= $data['date']; ?></td>
+                                            <?php if($data['status'] == "received") { ?>
+                                                <td class="text-success">delivered</td>
+                                            <?php }else { ?>
+                                                <td><a href="?id=<?= $data['id'] ?>" class="btn btn-primary" onclick="return confirm('Are you sure you want to confirm?')">confirm</a></td>
+                                            <?php } ?>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
