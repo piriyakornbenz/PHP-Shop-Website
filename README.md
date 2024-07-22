@@ -31,13 +31,6 @@ Create PHP website with using:
 
 <br>
 
-## Cart
-<br>
-
-![alt text](img/cart.png)
-
-<br>
-
 ## Profile
 <br>
 
